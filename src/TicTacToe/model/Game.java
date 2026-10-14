@@ -1,5 +1,12 @@
 package TicTacToe.model;
 
+import TicTacToe.Enums.GameStatus;
+import TicTacToe.Enums.PlayerType;
+import TicTacToe.Exception.DuplicateSymbolException;
+import TicTacToe.Exception.InvalidNumberOfBotException;
+import TicTacToe.Exception.InvalidNumberOfPlayerException;
+
+import java.util.HashSet;
 import java.util.List;
 
 public class Game {
@@ -10,6 +17,7 @@ public class Game {
     private List<Move> moves;
     private List<Board> boardStates;
     private int numberOfMaps;
+    private PlayerType playerType;
 
    private Game(Board board, List<Player> players, Player currentPlayer, GameStatus gameStatus,
                 List<Move> moves, List<Board> boardStates, int numberOfMaps ){
@@ -33,6 +41,7 @@ public class Game {
        private List<Move> moves;
        private List<Board> boardStates;
        private int numberOfMaps;
+       private  PlayerType PlayerType;
 
 
        public Builder() {
@@ -73,13 +82,41 @@ public class Game {
            return this;
        }
 
+       public boolean isDuplicate(){
+           HashSet<Character> set = new HashSet<>();
+           for(Player player : players){
+               set.add(player.getSymbol());
+           }
+           if(set.size() != players.size()){
+               throw new DuplicateSymbolException("Duplicate symbol exist");
+           }else{
+               return true;
+           }
+       }
+       public boolean isValidPlayers(){
+           int temp = 0;
+           int count = 0;
+           for(int i = 0; i<players.size(); i++){
+
+               if(PlayerType == PlayerType.BOT){
+                   count++;
+                   temp++;
+               }else{
+                   temp++;
+               }
+           }
+           if(count > 1){
+               throw new InvalidNumberOfBotException("There are more then 1 bot player");
+           }
+           if(temp != board.getDimension()-1){
+               throw new InvalidNumberOfPlayerException("There are insufficient player");
+           }else{
+               return true;
+           }
+       }
        public void validate(){
-//            if(players.size() != ){
-//                throw InvalidNumberOfPlayerException("Invalid players");
-//            }
-//            if(){
-//                throw DuplicateSymbolException("Duplicate symbol");
-//            }
+           isDuplicate();
+           isValidPlayers();
        }
        public Game build(){
            validate();
