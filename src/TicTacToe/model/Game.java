@@ -29,7 +29,72 @@ public class Game {
        this.boardStates = boardStates;
        this.numberOfMaps = numberOfMaps;
    }
-   public static Builder builder(){
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public GameStatus getGameStatus() {
+        return gameStatus;
+    }
+
+    public void setGameStatus(GameStatus gameStatus) {
+        this.gameStatus = gameStatus;
+    }
+
+    public List<Move> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Move> moves) {
+        this.moves = moves;
+    }
+
+    public List<Board> getBoardStates() {
+        return boardStates;
+    }
+
+    public void setBoardStates(List<Board> boardStates) {
+        this.boardStates = boardStates;
+    }
+
+    public int getNumberOfMaps() {
+        return numberOfMaps;
+    }
+
+    public void setNumberOfMaps(int numberOfMaps) {
+        this.numberOfMaps = numberOfMaps;
+    }
+
+    public PlayerType getPlayerType() {
+        return playerType;
+    }
+
+    public void setPlayerType(PlayerType playerType) {
+        this.playerType = playerType;
+    }
+
+    public static Builder builder(){
        return new Builder();
    }
 
@@ -41,44 +106,48 @@ public class Game {
        private List<Move> moves;
        private List<Board> boardStates;
        private int numberOfMaps;
-       private  PlayerType PlayerType;
+       private  PlayerType playerType;
 
 
        public Builder() {
        }
 
-       public Builder setBoard() {
+       public Builder setBoard(Board board) {
            this.board = board;
            return this;
        }
 
-       public Builder setPlayers() {
+       public Builder setPlayers(List<Player> players) {
            this.players = players;
            return this;
        }
 
-       public Builder setCurrentPlayer() {
+       public Builder setCurrentPlayer(Player currentPlayer) {
            this.currentPlayer = currentPlayer;
            return this;
        }
 
-       public Builder setGameStatus() {
+       public Builder setGameStatus(GameStatus gameStatus) {
            this.gameStatus = gameStatus;
            return this;
        }
 
-       public Builder setMoves() {
+       public Builder setMoves(List<Move> moves) {
            this.moves = moves;
            return this;
        }
 
-       public Builder setBoardStates() {
+       public Builder setBoardStates(List<Board> boardStates) {
            this.boardStates = boardStates;
            return this;
        }
 
-       public Builder setNumberOfMaps() {
+       public Builder setNumberOfMaps(int numberOfMaps) {
            this.numberOfMaps = numberOfMaps;
+           return this;
+       }
+       public Builder setPlayerType(PlayerType playerType){
+           this.playerType = playerType;
            return this;
        }
 
@@ -98,7 +167,7 @@ public class Game {
            int count = 0;
            for(int i = 0; i<players.size(); i++){
 
-               if(PlayerType == PlayerType.BOT){
+               if(playerType == PlayerType.BOT){
                    count++;
                    temp++;
                }else{

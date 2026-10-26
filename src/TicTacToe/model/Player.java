@@ -14,7 +14,7 @@ public class Player {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
-        this.playerType = playerType.HUMAN;
+        this.playerType = playerType;
     }
 
     public int getId() {
